@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/*
+ * Färgskala: skogsgrön + grafit. Grönt associeras med "kör", säkerhet och tillit;
+ * tonerna är valda för god kontrast (WCAG AA).
+ * --brand (grön) används som primärfärg, --brand-deep för rubriker/footer,
+ * --accent (amber) som varm accent, --background som mjuk svalvit bakgrund.
+ */
+:root {
+  --warm-white: #f8faf9;
+  --surface: #ffffff;
+  --foreground: #102a23; /* mörk grafitgrön – hög kontrast mot bakgrunden */
+  --muted: #4b5f57;
+
+  --brand: #047857; /* skogsgrön – primär */
+  --brand-hover: #036249; /* mörkare grön vid hover */
+  --brand-deep: #064e3b; /* mörk grön för rubriker/footer */
+  --brand-soft: #e7f5ef; /* ljus grön för bakgrundsytor */
+
+  --accent: #b45309; /* varm amber/brun – sekundär accent med AA-kontrast på vitt */
+  --accent-bright: #f59e0b; /* ljusare amber för dekorativa ytor */
+  --border: #dce5e1;
+
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--warm-white);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-border: var(--border);
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-card: var(--radius);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--warm-white);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tydlig, synlig fokusmarkering för tangentbordsnavigering (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* "Hoppa till innehåll"-länk: dold tills den får fokus */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--brand-deep);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  transition: top 0.15s ease-in;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

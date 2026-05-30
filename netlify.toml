@@ -1,0 +1,17 @@
+# Netlify-konfiguration för statisk Next.js-export.
+# Repot kopplas i Netlify (New site from Git -> github.com/lukasbjork/korskola).
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Säkerhetsheaders för alla sidor.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
